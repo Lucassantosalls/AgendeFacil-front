@@ -1,0 +1,95 @@
+<h1 class="mt-4">Serviço Prestado!</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Formulário: </li>
+</ol>
+<div class="container">
+  <form #form="ngForm" (submit)="onSubmit()">
+
+      <div class="row">
+        <div class="col md 12">
+          <div class="alert alert-success" role="alert" *ngIf="sucesso == true">
+            Serviço salvo com sucesso!
+          </div>
+          <div class="alert alert-danger" role="alert"*ngFor="let erro of erros">
+            {{erro}}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label >Cliente: </label>
+            <select class="form-control"
+                  [ngModelOptions]="{standalone:true}"
+                  [(ngModel)]="servico.id_cliente">
+              <option value=""> Selecione...</option>
+              <option *ngFor="let cliente of clientes" [ngValue] = "cliente.id">
+                {{cliente.nome}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label >Descrição: </label>
+            <input class="form-control" [(ngModel)]="servico.descricao" type="text" name="descricao" id="inputDescricao">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label >Resumo: </label>
+            <input class="form-control" [(ngModel)]="servico.resumo" type="text" name="resumo" id="inputResumo">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label >Endereço: </label>
+            <input class="form-control" [(ngModel)]="servico.enderecoServico" type="text" name="endereco" id="inputEndereco">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label >Valor: </label>
+            <input class="form-control" [(ngModel)]="servico.valor" type="text" name="valor" id="inputValor">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label >Concluido: </label>
+            <select class="form-control" name="concluido" [(ngModel)]="servico.concluido" id="inputConcluido">
+              <option>Não</option>
+              <option>Sim</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label >Data do Serviço: </label>
+            <input placeholder="Select date" type="date" name="dtServico" [(ngModel)]="servico.dataDoServico" id="inputDataServico" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-save"></i> Salvar
+          </button>
+
+          <button type="button" routerLink="/servico-prestado-listagem" class="btn btn-danger ml-1" >
+            <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+          </button>
+        </div>
+      </div>
+  </form>
+</div>
